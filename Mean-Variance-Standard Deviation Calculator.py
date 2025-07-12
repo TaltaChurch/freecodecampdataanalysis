@@ -28,8 +28,7 @@ def calculate(list):
             
         
     
-
-print(calculate(testList))
-#print(dir(np))
+if __name__ == "__main__":
+    print(calculate(testList))
 
 
