@@ -3,7 +3,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 df = pd.read_csv('fcc-forum-pageviews.csv',parse_dates=['date'],index_col='date')
 
 df = df[(df.value >= df.value.quantile(0.025)) &
@@ -13,8 +12,8 @@ def draw_line_plot():
     fig, ax = plt.subplots(figsize=(12,6))
     ax.plot(df.index, df.value,color='red', linewidth=0.5)
     ax.set_title('Daily freeCodeCamp Forum Page Views 5/2016-12/2019')
-    ax.set_xlabel('date')
-    ax.set_ylabel('page viwes')
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Page Views')
     
    
     
@@ -63,7 +62,7 @@ def draw_box_plot():
     
     
     ax1.set_title('Year-wise Box Plot (Trend)')
-    ax1.set_xlabel('Years')
+    ax1.set_xlabel('Year')
     ax1.set_ylabel('Page Views')
     
     sns.boxplot(data=df_box,x='month_name',y='value',hue='month_name',palette=sns.color_palette("pastel", 12),ax=ax2,legend=False,order=months, flierprops={  
@@ -74,19 +73,16 @@ def draw_box_plot():
     })
     ax2.set_xticklabels([i[:3] for i in months])
     ax2.set_title('Month-wise Box Plot (Seasonality)')
-    ax2.set_xlabel('months')
+    ax2.set_xlabel('Month')
     ax2.set_ylabel('Page Views')
     
     plt.tight_layout()
     
     fig.savefig('box_plot.png')
     return fig
-        
+
 
 if __name__ == "__main__":
     draw_line_plot()
     draw_bar_plot()
-    draw_box_plot()
-    
-   
-   
+    draw_box_plot()        
